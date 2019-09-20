@@ -1,3 +1,5 @@
+import java.util.Set;
+
 /*
  * @lc app=leetcode.cn id=3 lang=java
  *
@@ -38,10 +40,27 @@
  * 
  * 
  */
+//滑动窗口HashSet
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        char c=s.charAt(1);
-        
+        int i=0,j=0,maxLen=0;
+        int n=s.length();
+        Set<Character> hSet=new HashSet<>();
+        while(j<n)
+        {
+            if(hSet.contains(s.charAt(j)))
+            {
+                hSet.remove(s.charAt(i));
+                i++;
+            }
+            else
+            {
+                hSet.add(s.charAt(j));
+                j++;
+                maxLen=Math.max(maxLen,j-i);
+            }
+        }
+        return maxLen;
     }
 }
 
