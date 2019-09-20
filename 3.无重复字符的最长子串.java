@@ -41,6 +41,7 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         char c=s.charAt(1);
+        
     }
 }
 
