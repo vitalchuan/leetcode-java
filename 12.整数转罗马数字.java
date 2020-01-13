@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /*
  * @lc app=leetcode.cn id=12 lang=java
  *
@@ -7,21 +9,37 @@
 // @lc code=start
 class Solution {
     public String intToRoman(int num) {
-        int[] nums = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        String[] romans = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        // HashMap<Integer,String> map = new HashMap<>();
+        // map.put(1, "I");
+        // map.put(4,"IV");
+        // map.put(5, "V");
+        // map.put(6, "VI");
+        // map.put(10, "X");
+        // map.put(40, "XL");
+        // map.put(50, "L");
+        // map.put(60, "LX");
+        // map.put(100, "C");
+        // map.put(400, "CD");
+        // map.put(500, "D");
+        // map.put(600, "DC");
+        // map.put(1000, "M");
 
-        StringBuilder stringBuilder = new StringBuilder();
+        int[] a = new int[]{1000,900,500,400,
+            100,90,50,40,10,9,5,4,1};
+        String[] b = new String[]{"M","CM","D","CD",
+        "C","XC","L","XL","X","IX","V","IV","I"};
         int index = 0;
-        while (index < 13) {
-            // 特别注意：这里是等号
-            while (num >= nums[index]) {
-                // 注意：这里是等于号，表示尽量使用大的"面值"
-                stringBuilder.append(romans[index]);
-                num -= nums[index];
+        String s = "";
+        while(num > 0)
+        {
+            int count = num / a[index];
+            while(count-- >0)
+            {
+                s = s + b[index];
             }
-            index++;
+            num = num % a[index++];
         }
-        return stringBuilder.toString();
+        return s;
     }
 }
 // @lc code=end
