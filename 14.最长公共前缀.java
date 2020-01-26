@@ -9,28 +9,17 @@ import java.util.HashSet;
 // @lc code=start
 class Solution {
     public String longestCommonPrefix(String[] strs) {
-        int n = strs.length;
-        int i = strs[0].length();
-        int result = 0;
-        boolean flag = false;
-        //找到最短字符串的长度
-        while(n-->0)
+        if(strs.length == 0) return "";
+        String pre = strs[0];
+        for(int i=1;i<strs.length;i++)
         {
-            if(strs[n-1].length() < i)
-                i = strs[n-1].length();
+            while((a=strs[i].indexOf(pre))!=0)
+            {
+                pre = pre.substring(0,pre.length()-1);
+                if(pre.isEmpty()) return "";
+            }
         }
-
-        for(int j = 0; j < i; j++)
-        {
-            for(int m=0;m<strs.length-1;m++)
-                if(strs[m].charAt(j) != strs[m+1].charAt(j))
-                    {flag=true;break;}
-            if(flag == false)
-                result++;
-            else
-                break;
-        }
-        return strs[0].substring(0,result);
+        return pre;
     }
 }
 // @lc code=end
