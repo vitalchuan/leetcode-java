@@ -27,11 +27,11 @@ class Solution {
 
     public List<String> letterCombinations(String digits) {
         String combination = "";
-        trackback(combination,digits);
+        dfs(combination,digits);
         return list;
     }
 
-    public void trackback(String combination,String nextDigit)
+    public void dfs(String combination,String nextDigit)
     {
         if(nextDigit.equals(""))
         {
@@ -44,7 +44,7 @@ class Solution {
             String s = phone.get(value);
             for(int i = 0;i < s.length(); i++)
             {
-                trackback(combination+s.substring(i,i+1),
+                dfs(combination+s.substring(i,i+1),
                  nextDigit.substring(1));
             }
         }
