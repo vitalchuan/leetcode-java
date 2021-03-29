@@ -13,20 +13,23 @@ class Solution {
         List<List<Integer>> res = new LinkedList<>();
         LinkedList<Integer> current = new LinkedList<>();
 
-        
+        dfs(res, current, n, k);
+        return res;
     }
 
     public void dfs(List<List<Integer>> res, LinkedList<Integer> current, int n, int k) {
         int len = current.size();
+        int last = current.isEmpty() ? 0 : current.getLast();
+        if ((n - last) < (k - len))
+            return;
         if (len == k) {
-            res.add(current);
+            res.add(new LinkedList<>(current));
             return;
         }
 
-        int last = current.isEmpty() ? 0 : current.getLast();
         for (int i = last + 1; i <= n; i++) {
             current.add(i);
-            dfs(res,current,n,k);
+            dfs(res, current, n, k);
             current.removeLast();
         }
     }
