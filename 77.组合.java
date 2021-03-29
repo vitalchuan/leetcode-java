@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.List;
 
 /*
  * @lc app=leetcode.cn id=77 lang=java
@@ -9,26 +10,26 @@ import java.util.LinkedList;
 // @lc code=start
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
-        List<List<Integer>> resList = new ArrayList<>();
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        dfs(resList, linkedList, n, k);
-        return resList;
+        List<List<Integer>> res = new LinkedList<>();
+        LinkedList<Integer> current = new LinkedList<>();
+
+        
     }
 
-    public void dfs(List<List<Integer>> resList, LinkedList<Integer> linkedList, int n, int k) {
-        int listLen = linkedList.size();
-        if (listLen == k)
-            resList.add(linkedList);
-        else {
-            int lastE = linkedList.isEmpty() ? 0 : linkedList.getLast();
-            if (lastE != n)
-                for (int i = lastE + 1; i <= n; i++) {
-                    linkedList.add(i);
-                    dfs(resList, linkedList, n, k);
-                    linkedList.removeLast();
-                }
+    public void dfs(List<List<Integer>> res, LinkedList<Integer> current, int n, int k) {
+        int len = current.size();
+        if (len == k) {
+            res.add(current);
+            return;
         }
 
+        int last = current.isEmpty() ? 0 : current.getLast();
+        for (int i = last + 1; i <= n; i++) {
+            current.add(i);
+            dfs(res,current,n,k);
+            current.removeLast();
+        }
     }
+
 }
 // @lc code=end
