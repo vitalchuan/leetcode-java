@@ -12,16 +12,24 @@ class Solution {
         int i = 0;
         int j = 0;
         int len = nums.length;
+        int counts = 1;
         while (i != nums.length - 1) {
             i++;
             if (nums[i] == nums[i - 1]) {
                 counts++;
-                if (counts >= 3)
+                if (counts <= 2) {
+                    j++;
+                    nums[j] = nums[i];
+                } else {
                     len--;
-            } else {
-                counts = 1;
+                }
+            } else { // 前指针的值遇到变化
+                counts = 1; // 计数器归位
+                j++;
+                nums[j] = nums[i];
             }
         }
+        return len;
     }
 }
 // @lc code=end
