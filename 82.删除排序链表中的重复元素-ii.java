@@ -12,23 +12,28 @@
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         ListNode prev, current, next;
+        current = head;
         ListNode dummyNode = new ListNode(0, head);
         prev = dummyNode;
-        while (current.next != null) {
+        while (current != null && current.next != null) {
             if (current.val == current.next.val) {
                 while (current.val == current.next.val) { // 找到下一个不同的点
                     current = current.next;
-                    if (current.next == null) {
+                    if (current.next == null) { // 遇到结尾，直接return
                         current = null;
-                        break;
+                        prev.next = null;
+                        return dummyNode.next;
                     }
                 }
+
+                current = current.next;
                 prev.next = current; // 删除中间节点
             } else {
                 prev = current;
                 current = current.next;
             }
         }
+        return dummyNode.next;
     }
 }
 // @lc code=end
