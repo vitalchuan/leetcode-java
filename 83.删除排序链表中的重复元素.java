@@ -16,10 +16,11 @@ class Solution {
         ListNode prev = dummyNode;
         ListNode current = head;
 
-        while (current.next != null) { // 只要没到结尾
-            if (current.val != current.next.val)
+        while (current != null && current.next != null) { // 只要没到结尾
+            if (current.val != current.next.val) {
+                prev = current;
                 current = current.next;
-            else {
+            } else {
                 while (current.val == current.next.val) {
                     current = current.next;
                     if (current.next == null) {// 遇到重复的直到结尾 直接返回
@@ -27,8 +28,11 @@ class Solution {
                         return dummyNode.next;
                     }
                 }
+                prev.next = current;
             }
         }
+
+        return dummyNode.next;
     }
 }
 // @lc code=end
