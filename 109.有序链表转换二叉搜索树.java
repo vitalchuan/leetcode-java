@@ -1,10 +1,24 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 /*
- * @lc app=leetcode.cn id=108 lang=java
+ * @lc app=leetcode.cn id=109 lang=java
  *
- * [108] 将有序数组转换为二叉搜索树
+ * [109] 有序链表转换二叉搜索树
  */
 
 // @lc code=start
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 /**
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
  * left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; }
@@ -12,8 +26,19 @@
  * = left; this.right = right; } }
  */
 class Solution {
-    public TreeNode sortedArrayToBST(int[] nums) {
+    public TreeNode sortedListToBST(ListNode head) {
+        List<Integer> list = new ArrayList<>();
+        while (head != null) {
+            list.add(head.val);
+            head = head.next;
+        }
+
+        int[] nums = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) 
+            nums[i] = list.get(i);
+        
         return sortedArrayToBST(nums, 0, nums.length - 1);
+
     }
 
     public TreeNode sortedArrayToBST(int[] nums, int start, int end) {
