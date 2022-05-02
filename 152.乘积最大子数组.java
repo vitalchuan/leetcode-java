@@ -19,6 +19,8 @@ class Solution {
             } else if (nums[i] < 0) {
                 dp_max[i] = dp_min[i - 1] * nums[i];
                 dp_min[i] = dp_min[i - 1] * nums[i];
+            } else {
+                dp_max[i]
             }
 
         }
